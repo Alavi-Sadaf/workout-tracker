@@ -5,9 +5,10 @@ import { Trash } from "lucide-react";
 
 const WorkoutDetails = ({ workout }) => {
   const { dispatch } = useWorkoutsContext();
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const handleClick = async () => {
-    const response = await fetch("/api/workouts/" + workout._id, {
+    const response = await fetch(`${API_URL}/api/workouts/` + workout._id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

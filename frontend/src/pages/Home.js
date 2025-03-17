@@ -8,11 +8,12 @@ import WorkoutForm from "../components/WorkoutForm";
 const Home = () => {
   const { workouts, dispatch } = useWorkoutsContext();
   const [loading, setLoading] = useState(true);
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const response = await fetch("/api/workouts");
+        const response = await fetch(`${API_URL}/api/workouts`);
         const json = await response.json();
 
         if (response.ok) {
@@ -23,8 +24,7 @@ const Home = () => {
       }
     };
     fetchWorkouts();
-  }, [dispatch]);
-
+  }, [dispatch, API_URL]);
   return (
     <div className="home">
       <WorkoutForm />
